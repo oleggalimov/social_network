@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${spring.datasource.username}
+    username: test_user
+    password: test_pass
+  liquibase:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    defaultSchema: public
+    changeLog: classpath:/db/changelog/changelog-master.yaml

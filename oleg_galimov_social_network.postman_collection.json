@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "5ee840e9-8fdb-4263-94a0-07f493be5c16",
+		"name": "oleg_galimov_social_network",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Первый\",\n    \"second_name\": \"Пользователь\",\n    \"birth_date\": \"2017-02-01\",\n    \"biography\": \"Только для регистрации остальных\",\n    \"city\": \"Москва\",\n    \"password\": \"password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\" : \"b75722b8-fd0b-4701-9605-3e6f89adffce\",\n    \"password\" : \"password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by user id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNzU3MjJiOC1mZDBiLTQ3MDEtOTYwNS0zZTZmODlhZGZmY2UiLCJpYXQiOjE2ODI4NzkwMDQsImV4cCI6MTY4Mjg4MjYwNH0.EjQIps4xsB93Cw0DRNpe428-22xA3IJt9gd4DVX5lbI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/get/b75722b8-fd0b-4701-9605-3e6f89adffce",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"get",
+						"b75722b8-fd0b-4701-9605-3e6f89adffce"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "id",
+							"disabled": true
+						},
+						{
+							"key": null,
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by first and last names",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNzU3MjJiOC1mZDBiLTQ3MDEtOTYwNS0zZTZmODlhZGZmY2UiLCJpYXQiOjE2ODI4NzkwMDQsImV4cCI6MTY4Mjg4MjYwNH0.EjQIps4xsB93Cw0DRNpe428-22xA3IJt9gd4DVX5lbI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/search?first_name=Пер&last_name=П",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"search"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Пер"
+						},
+						{
+							"key": "last_name",
+							"value": "П"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
