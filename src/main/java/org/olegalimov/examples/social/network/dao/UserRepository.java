@@ -63,8 +63,9 @@ public class UserRepository {
         params.addValue("userId", entity.getUserId())
                 .addValue("firstName", entity.getFirstName())
                 .addValue("secondName", entity.getSecondName())
-                .addValue("birthDate", entity.getBirthDate())
-                .addValue("biography", entity.getBiography())
+                .addValue("age", entity.getAge())
+                .addValue("sex", entity.getSex())
+                .addValue("interests", entity.getInterests())
                 .addValue("city", entity.getCity())
                 .addValue("password", entity.getPassword());
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="4_users_add_index" author="oleg.galimov">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="users"/>
+            <not>
+                <indexExists indexName="first_second_name_idx"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="users" indexName="first_second_name_idx">
+            <column name="first_name"/>
+            <column name="second_name"/>
+        </createIndex>
+
+    </changeSet>
+
+
+</databaseChangeLog>

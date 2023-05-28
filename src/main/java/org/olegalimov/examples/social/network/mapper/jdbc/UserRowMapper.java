@@ -13,12 +13,13 @@ public class UserRowMapper implements RowMapper<User> {
         return new User(
                 rs.getLong("id"),
                 rs.getString("user_id"),
+                rs.getString("password"),
                 rs.getString("first_name"),
                 rs.getString("second_name"),
-                rs.getDate("birth_date").toLocalDate(),
-                rs.getString("biography"),
-                rs.getString("city"),
-                rs.getString("password")
+                rs.getInt("age"),
+                rs.getString("sex"),
+                rs.getString("interests"),
+                rs.getString("city")
         );
     }
 }

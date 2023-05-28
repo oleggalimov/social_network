@@ -8,8 +8,8 @@ public class Queries {
     public static class Insert {
         public static final String INSERT_USER_TEMPLATE = """
                 INSERT INTO USERS (
-                    user_id, first_name, second_name, birth_date, biography, city, password)
-                values(:userId, :firstName, :secondName, :birthDate, :biography, :city, :password);
+                    user_id, first_name, second_name, age, sex, interests, city, password)
+                values(:userId, :firstName, :secondName, :age, :sex, :interests, :city, :password);
                 """;
     }
 

@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"first_name\": \"Первый\",\n    \"second_name\": \"Пользователь\",\n    \"birth_date\": \"2017-02-01\",\n    \"biography\": \"Только для регистрации остальных\",\n    \"city\": \"Москва\",\n    \"password\": \"password123\"\n}",
+					"raw": "{\n    \"first_name\": \"Первый\",\n    \"second_name\": \"Пользователь\",\n    \"age\": \"32\",\n    \"sex\": \"Male\",\n    \"interests\": \"history\",\n    \"city\": \"Москва\",\n    \"password\": \"password123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\" : \"b75722b8-fd0b-4701-9605-3e6f89adffce\",\n    \"password\" : \"password123\"\n}",
+					"raw": "{\n    \"id\" : \"14945cdd-8efc-4941-9a78-028df03891e3\",\n    \"password\" : \"password123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNzU3MjJiOC1mZDBiLTQ3MDEtOTYwNS0zZTZmODlhZGZmY2UiLCJpYXQiOjE2ODI4NzkwMDQsImV4cCI6MTY4Mjg4MjYwNH0.EjQIps4xsB93Cw0DRNpe428-22xA3IJt9gd4DVX5lbI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDk0NWNkZC04ZWZjLTQ5NDEtOWE3OC0wMjhkZjAzODkxZTMiLCJpYXQiOjE2ODUwNDA0NzUsImV4cCI6MTY4NTA0NDA3NX0.77PFdawUtIfw7qgxQJThxkbyJe6qaOHhWBC0xRxoPs0",
 							"type": "string"
 						}
 					]
@@ -76,7 +76,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/user/get/b75722b8-fd0b-4701-9605-3e6f89adffce",
+					"raw": "localhost:8080/user/get/14945cdd-8efc-4941-9a78-028df03891e3",
 					"host": [
 						"localhost"
 					],
@@ -84,7 +84,7 @@
 					"path": [
 						"user",
 						"get",
-						"b75722b8-fd0b-4701-9605-3e6f89adffce"
+						"14945cdd-8efc-4941-9a78-028df03891e3"
 					],
 					"query": [
 						{

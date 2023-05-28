@@ -18,13 +18,14 @@ import static org.olegalimov.examples.social.network.constant.CommonConstant.LOC
 public class UserDto {
 
     private String id;
-    private String firstName;
-    private String secondName;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = LOCAL_DATE_FORMAT)
-    private LocalDate birthDate;
-    private String biography;
-    private String city;
-
     @ToString.Exclude
     private String password;
+    private String firstName;
+    private String secondName;
+    private Integer age;
+    private String sex;
+    private String interests;
+    private String city;
+
+
 }
