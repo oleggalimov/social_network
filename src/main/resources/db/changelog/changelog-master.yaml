@@ -8,6 +8,6 @@ databaseChangeLog:
   - include:
       file: ./3_populate_users.xml
       relativeToChangelogFile: true
-#  - include:
-#      file: ./4_users_add_index.xml
-#      relativeToChangelogFile: true
+  - include:
+      file: ./4_users_add_index.xml
+      relativeToChangelogFile: true

@@ -51,8 +51,8 @@ public class UserRepository {
         return jdbcTemplate.query(
                 SELECT_USERS_BY_NAMES,
                 Map.of(
-                        "firstName", "%" + firstName + "%",
-                        "secondName", "%" + secondName + "%"),
+                        "firstName", firstName,
+                        "secondName",  secondName),
                 new RowMapperResultSetExtractor<>(new UserRowMapper())
         );
     }
