@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\" : \"14945cdd-8efc-4941-9a78-028df03891e3\",\n    \"password\" : \"password123\"\n}",
+					"raw": "{\n    \"id\" : \"7e4f6862-c407-4336-a7a4-8b6017ca1d02\",\n    \"password\" : \"password123\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDk0NWNkZC04ZWZjLTQ5NDEtOWE3OC0wMjhkZjAzODkxZTMiLCJpYXQiOjE2ODUwNDA0NzUsImV4cCI6MTY4NTA0NDA3NX0.77PFdawUtIfw7qgxQJThxkbyJe6qaOHhWBC0xRxoPs0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
 							"type": "string"
 						}
 					]
@@ -76,7 +76,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/user/get/14945cdd-8efc-4941-9a78-028df03891e3",
+					"raw": "localhost:8080/user/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
 					"host": [
 						"localhost"
 					],
@@ -84,7 +84,50 @@
 					"path": [
 						"user",
 						"get",
-						"14945cdd-8efc-4941-9a78-028df03891e3"
+						"b13698ab-1fd9-49af-8406-0bd30fe0412d"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "id",
+							"disabled": true
+						},
+						{
+							"key": null,
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by user id in slave",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/slave/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"slave",
+						"get",
+						"b13698ab-1fd9-49af-8406-0bd30fe0412d"
 					],
 					"query": [
 						{
@@ -110,7 +153,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiNzU3MjJiOC1mZDBiLTQ3MDEtOTYwNS0zZTZmODlhZGZmY2UiLCJpYXQiOjE2ODI4NzkwMDQsImV4cCI6MTY4Mjg4MjYwNH0.EjQIps4xsB93Cw0DRNpe428-22xA3IJt9gd4DVX5lbI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
 							"type": "string"
 						}
 					]
@@ -118,7 +161,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/user/search?first_name=Пер&last_name=П",
+					"raw": "localhost:8080/user/search?first_name=Анна&last_name=Морозова",
 					"host": [
 						"localhost"
 					],
@@ -130,11 +173,51 @@
 					"query": [
 						{
 							"key": "first_name",
-							"value": "Пер"
+							"value": "Анна"
 						},
 						{
 							"key": "last_name",
-							"value": "П"
+							"value": "Морозова"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find user by first and last names in slave",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/user/slave/search?first_name=Анна&last_name=Морозова",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"slave",
+						"search"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Анна"
+						},
+						{
+							"key": "last_name",
+							"value": "Морозова"
 						}
 					]
 				}

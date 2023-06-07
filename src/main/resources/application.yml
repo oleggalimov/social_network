@@ -2,13 +2,18 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${spring.datasource.username}
-    username: test_user
-    password: test_pass
+    master:
+      url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${spring.datasource.master.username}
+      username: test_user
+      password: test_pass
+    slave:
+      url: jdbc:postgresql://${DATABASE_SLAVE_HOST:localhost}:5432/${spring.datasource.slave.username}
+      username: test_user
+      password: test_pass
   liquibase:
-    url: ${spring.datasource.url}
-    user: ${spring.datasource.username}
-    password: ${spring.datasource.password}
+    url: ${spring.datasource.master.url}
+    user: ${spring.datasource.master.username}
+    password: ${spring.datasource.master.password}
     defaultSchema: public
     changeLog: classpath:/db/changelog/changelog-master.yaml
 #logging:

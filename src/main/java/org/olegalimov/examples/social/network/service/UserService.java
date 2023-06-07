@@ -18,8 +18,12 @@ public class UserService {
     private final UserMapper userMapper;
 
     public UserDto findByUserId(String userId) {
-        log.info("Ищем пользователя с идентификатором {}", userId);
-        var entity = userRepository.findByUserId(userId);
+        return findByUserId(userId, false);
+    }
+
+    public UserDto findByUserId(String userId, boolean fromSlave) {
+        log.info("Ищем пользователя с идентификатором {}, признак поиска на слейве: {}", userId, fromSlave);
+        var entity = userRepository.findByUserId(userId, fromSlave);
         log.info("Найдена сущность с id={}", entity.getId());
         return userMapper.toUserDto(entity);
     }
@@ -31,8 +35,12 @@ public class UserService {
     }
 
     public List<UserDto> findByNames(String firstName, String secondName) {
+        return findByNames(firstName, secondName, false);
+    }
+
+    public List<UserDto> findByNames(String firstName, String secondName, boolean fromSlave) {
         log.info("Ищем пользователя с именем {} и фамилией {}", firstName, secondName);
-        return userRepository.findByNames(firstName, secondName).stream()
+        return userRepository.findByNames(firstName, secondName, fromSlave).stream()
                 .map(userMapper::toUserDto)
                 .toList();
     }

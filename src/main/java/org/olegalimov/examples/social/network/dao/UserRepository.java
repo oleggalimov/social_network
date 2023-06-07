@@ -1,10 +1,10 @@
 package org.olegalimov.examples.social.network.dao;
 
-import lombok.RequiredArgsConstructor;
 import org.olegalimov.examples.social.network.entity.User;
 import org.olegalimov.examples.social.network.exception.EntityNotFoundException;
 import org.olegalimov.examples.social.network.exception.TooManyResultException;
 import org.olegalimov.examples.social.network.mapper.jdbc.UserRowMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,12 +18,24 @@ import static org.olegalimov.examples.social.network.constant.Queries.Select.SEL
 import static org.olegalimov.examples.social.network.constant.Queries.Select.SELECT_USER_BY_USER_ID;
 
 @Service
-@RequiredArgsConstructor
 public class UserRepository {
-    private final NamedParameterJdbcTemplate jdbcTemplate;
+
+    private final NamedParameterJdbcTemplate masterJdbcTemplate;
+    private final NamedParameterJdbcTemplate slaveJdbcTemplate;
+
+    public UserRepository(
+            @Qualifier("masterJdbcTemplate") NamedParameterJdbcTemplate masterJdbcTemplate,
+            @Qualifier("slaveJdbcTemplate") NamedParameterJdbcTemplate slaveJdbcTemplate) {
+        this.masterJdbcTemplate = masterJdbcTemplate;
+        this.slaveJdbcTemplate = slaveJdbcTemplate;
+    }
 
     public User findByUserId(String userId) {
-        var userList = findAllByUserId(userId);
+        return findByUserId(userId, false);
+    }
+
+    public User findByUserId(String userId, boolean fromSlave) {
+        var userList = findAllByUserId(userId, fromSlave);
         return switch (userList.size()) {
             case 0 -> throw new EntityNotFoundException(userId);
             case 1 -> userList.get(0);
@@ -31,15 +43,17 @@ public class UserRepository {
         };
     }
 
-    public List<User> findAllByUserId(String userId) {
-        return jdbcTemplate.query(
+    public List<User> findAllByUserId(String userId, boolean fromSlave) {
+        var template = fromSlave ? slaveJdbcTemplate : masterJdbcTemplate;
+
+        return template.query(
                 SELECT_USER_BY_USER_ID,
                 Map.of("userId", userId),
                 new RowMapperResultSetExtractor<>(new UserRowMapper()));
     }
 
     public String saveUser(User entity) {
-        int result = jdbcTemplate.update(INSERT_USER_TEMPLATE, buildParametersMap(entity));
+        int result = masterJdbcTemplate.update(INSERT_USER_TEMPLATE, buildParametersMap(entity));
         if (result != 1) {
             throw new IllegalStateException("Не удалось сохранить пользователя с именем "
                     + entity.getFirstName() + " " + entity.getSecondName());
@@ -47,12 +61,14 @@ public class UserRepository {
         return entity.getUserId();
     }
 
-    public List<User> findByNames(String firstName, String secondName) {
-        return jdbcTemplate.query(
+    public List<User> findByNames(String firstName, String secondName, boolean fromSlave) {
+        var template = fromSlave ? slaveJdbcTemplate : masterJdbcTemplate;
+
+        return template.query(
                 SELECT_USERS_BY_NAMES,
                 Map.of(
                         "firstName", firstName,
-                        "secondName",  secondName),
+                        "secondName", secondName),
                 new RowMapperResultSetExtractor<>(new UserRowMapper())
         );
     }
