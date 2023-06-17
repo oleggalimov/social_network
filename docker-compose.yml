@@ -18,48 +18,24 @@ services:
     environment:
       POSTGRES_PASSWORD: test_pass
       POSTGRES_USER: test_user
-    volumes:
-      - ./create_replica_user.sql:/docker-entrypoint-initdb.d/create_replica_user.sql
-      - $PWD/volumes/pgmaster/:/var/lib/postgresql/data
-  pg-slave:
-    profiles:
-      - donotstart
-    container_name: pgslave
+    command: [ "postgres", "-c", "log_statement=all" ]
+  redis-master:
+    container_name: redismaster
     networks:
       - pg-net
-    image: postgres:alpine3.17
+    image: redis:alpine3.18
     ports:
-      - "15432:5432"
-    restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: pass
-    volumes:
-      - $PWD/volumes/pgslave/:/var/lib/postgresql/data
-  pg-async-slave:
-    profiles:
-      - donotstart
-    container_name: pgasyncslave
-    networks:
-      - pg-net
-    image: postgres:alpine3.17
-    ports:
-      - "25432:5432"
-    restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: pass
-    volumes:
-      - $PWD/volumes/pgasyncslave/:/var/lib/postgresql/data
+      - "6379:6379"
   social-network:
-    profiles:
-      - donotstart
     networks:
       - pg-net
     depends_on:
       - pg-master
+      - redis-master
     image: social-network:0.1.0
     ports:
       - "8080:8080"
     restart: unless-stopped
     environment:
       - DATABASE_HOST=pgmaster
-      - DATABASE_SLAVE_HOST=pgslave
+      - REDIS_HOST=redismaster

@@ -6,223 +6,390 @@
 	},
 	"item": [
 		{
-			"name": "register new user",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"first_name\": \"Первый\",\n    \"second_name\": \"Пользователь\",\n    \"age\": \"32\",\n    \"sex\": \"Male\",\n    \"interests\": \"history\",\n    \"city\": \"Москва\",\n    \"password\": \"password123\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/user/register",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "login user",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\" : \"7e4f6862-c407-4336-a7a4-8b6017ca1d02\",\n    \"password\" : \"password123\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:8080/login",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "find user by user id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/user/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"get",
-						"b13698ab-1fd9-49af-8406-0bd30fe0412d"
-					],
-					"query": [
-						{
-							"key": null,
-							"value": "id",
-							"disabled": true
+			"name": "users",
+			"item": [
+				{
+					"name": "register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Пол\",\n    \"second_name\": \"Атрейдес\",\n    \"age\": \"15\",\n    \"sex\": \"Мужчина\",\n    \"interests\": \"Фантасика\",\n    \"city\": \"Каладан\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": null,
-							"value": "1",
-							"disabled": true
+						"url": {
+							"raw": "localhost:8080/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"register"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : \"7e4f6862-c407-4336-a7a4-8b6017ca1d02\",\n    \"password\" : \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by user id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"get",
+								"b13698ab-1fd9-49af-8406-0bd30fe0412d"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "id",
+									"disabled": true
+								},
+								{
+									"key": null,
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by first and last names",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/search?first_name=Анна&last_name=Морозова",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"search"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": "Анна"
+								},
+								{
+									"key": "last_name",
+									"value": "Морозова"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "find user by user id in slave",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/user/slave/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"slave",
-						"get",
-						"b13698ab-1fd9-49af-8406-0bd30fe0412d"
-					],
-					"query": [
-						{
-							"key": null,
-							"value": "id",
-							"disabled": true
+			"name": "friends",
+			"item": [
+				{
+					"name": "set friend",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0NTk3MWVkYS0wNjc4LTQxNGQtOTA1Ny04N2Y1MTlkYjAzYmIiLCJpYXQiOjE2ODcwMjQzOTcsImV4cCI6MTY4NzAyNzk5N30.ghcD8-AAtQlZ4sESHF8bAB0w63PX5fRBNovMPGPVfWk",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": null,
-							"value": "1",
-							"disabled": true
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/friend/set/8e7d90b1-9673-43b2-bfab-3438b4563f69",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"friend",
+								"set",
+								"8e7d90b1-9673-43b2-bfab-3438b4563f69"
+							]
 						}
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "find user by first and last names",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/user/search?first_name=Анна&last_name=Морозова",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"search"
-					],
-					"query": [
-						{
-							"key": "first_name",
-							"value": "Анна"
+			"name": "posts",
+			"item": [
+				{
+					"name": "create post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwZDUxM2M0Yi01N2U4LTQ3YjItYmFhYy0yNGI3YjNmYmUzZTciLCJpYXQiOjE2ODcwMjg3OTYsImV4cCI6MTY4NzAzMjM5Nn0.5y6EQ_Z4SEjX-bmGCW0JVWAjJKXbfZeVaAwwdNM7Aio",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "last_name",
-							"value": "Морозова"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "find user by first and last names in slave",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI3ZTRmNjg2Mi1jNDA3LTQzMzYtYTdhNC04YjYwMTdjYTFkMDIiLCJpYXQiOjE2ODYxNDEyNTcsImV4cCI6MTY4NjE0NDg1N30.g-MZm04KP8V5BK0RPGd_VphjzyCO8n8Vg0RZzANeZqM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/user/slave/search?first_name=Анна&last_name=Морозова",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"user",
-						"slave",
-						"search"
-					],
-					"query": [
-						{
-							"key": "first_name",
-							"value": "Анна"
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"text\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus mauris ultrices eros in cursus turpis massa.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "last_name",
-							"value": "Морозова"
+						"url": {
+							"raw": "localhost:8080/post/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"create"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "update post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGFmZDA4NC04NTIwLTQ1OGUtODUxMi0wOTJiYzY3YWE3NjkiLCJpYXQiOjE2ODcwMjkyMzIsImV4cCI6MTY4NzAzMjgzMn0.8iDNc_fGHx8j8TIUjuOxkOKg0d0Ei-VLctwm5pZ3i7M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1\",\n  \"text\": \"Изененный текст.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/post/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGFmZDA4NC04NTIwLTQ1OGUtODUxMi0wOTJiYzY3YWE3NjkiLCJpYXQiOjE2ODcwMzEwNTMsImV4cCI6MTY4NzAzNDY1M30.nJGC6V-lp1IzBh4YWZaZQ4184mN95Rj2RErz9lNTImE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/post/get/7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"get",
+								"7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get feed",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZDg1YTkyOS1jZGIzLTRjMjgtOGIxYy0xYzMyYWRmOTg0NWYiLCJpYXQiOjE2ODcwMzMwMzAsImV4cCI6MTY4NzAzNjYzMH0.Wl0wi09L3oPd0flkpm-I88IRXfUX8AvXqaKJCz_uoXw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/post/get/feed?offset=0&limit=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"get",
+								"feed"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGFmZDA4NC04NTIwLTQ1OGUtODUxMi0wOTJiYzY3YWE3NjkiLCJpYXQiOjE2ODcwMzEyMTIsImV4cCI6MTY4NzAzNDgxMn0.AFU_4YloJiWzltuYsQ2Fd1oKnm0G01A1ZsIWyZ3iEVU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/post/delete/7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"delete",
+								"7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "invalidate cache",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYmQwZmRlNy01ZDExLTRjMmQtODc5My1hMGJkY2E0MDRmMDAiLCJpYXQiOjE2ODcwODUwMjMsImV4cCI6MTY4NzA4ODYyM30.beVRfsoXBpLUbCFRjFvsWBqcni6XghtWrDF8SMpT4mA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/post/invalidate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"invalidate"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }

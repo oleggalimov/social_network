@@ -11,6 +11,16 @@ public class Queries {
                     user_id, first_name, second_name, age, sex, interests, city, password)
                 values(:userId, :firstName, :secondName, :age, :sex, :interests, :city, :password);
                 """;
+
+        public static final String INSERT_FRIEND_TEMPLATE = """
+                INSERT INTO friends(
+                    user_id, friend_user_id)
+                values(:userId, :friendUserId);
+                """;
+        public static final String INSERT_POST_TEMPLATE = """
+                INSERT INTO posts(post_id, text, author_user_id)
+                VALUES (:postId, :text, :authorUserId);
+                """;
     }
 
     public static class Select {
@@ -20,6 +30,32 @@ public class Queries {
         public static final String SELECT_USERS_BY_NAMES = """
                 SELECT * FROM USERS WHERE first_name LIKE :firstName AND second_name LIKE :secondName
                 """;
+        public static final String SELECT_POST_BY_POST_ID_TEMPLATE = """
+                SELECT * FROM posts
+                WHERE post_id = :postId;
+                """;
+        public static final String SELECT_FRIENDS_FEED_TEMPLATE = """
+                SELECT * FROM posts
+                WHERE author_user_id IN (
+                    SELECT friend_user_id from friends WHERE user_id = :userId)
+                ORDER BY post_date_time DESC OFFSET :offset LIMIT :limit;
+                """;
     }
+
+    public static class Update {
+        public static final String UPDATE_POST_TEMPLATE = """
+                UPDATE posts
+                SET text=:text, post_update_time = :postUpdateDateTime
+                WHERE post_id = :postId;
+                """;
+    }
+
+    public static class Delete {
+        public static final String DELETE_POST_TEMPLATE = """
+                DELETE FROM posts
+                WHERE post_id = :postId;
+                """;
+    }
+
 
 }

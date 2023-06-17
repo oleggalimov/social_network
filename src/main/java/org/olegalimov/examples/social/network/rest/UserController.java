@@ -25,22 +25,10 @@ public class UserController {
         return userService.findByUserId(id);
     }
 
-    @GetMapping("/slave/get/{id}")
-    public UserDto getByUserIdFromSlave(@PathVariable String id) {
-        return userService.findByUserId(id, true);
-    }
-
     @GetMapping("/search")
     public List<UserDto> searchUser(
             @RequestParam(name = "first_name") String firstName,
             @RequestParam(name = "last_name") String secondName) {
         return userService.findByNames(firstName, secondName);
-    }
-
-    @GetMapping("/slave/search")
-    public List<UserDto> searchUserFromSlave(
-            @RequestParam(name = "first_name") String firstName,
-            @RequestParam(name = "last_name") String secondName) {
-        return userService.findByNames(firstName, secondName, true);
     }
 }

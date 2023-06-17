@@ -1,9 +1,15 @@
 # Сборка и запуск приложения
 В корне проекта выполняем последовательно:
+```sh
+mvn clean install
+```
 
-1. `mvn clean install`
-2. `docker build -t social-network:0.1.0 .`
-3. `docker compose up -d`
+```sh
+docker build -t social-network:0.1.0 .
+```
+```shell
+docker compose up -d
+```
 
 В корне проекта лежит [коллекция для Postman](oleg_galimov_social_network.postman_collection.json),
 ее можно искользовать для тестирования API.
