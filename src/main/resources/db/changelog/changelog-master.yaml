@@ -5,9 +5,15 @@ databaseChangeLog:
   - include:
       file: ./2_recreate_tables.xml
       relativeToChangelogFile: true
-  - include:
-      file: ./3_populate_users.xml
-      relativeToChangelogFile: true
+#  - include:
+#      file: ./3_populate_users.xml
+#      relativeToChangelogFile: true
   - include:
       file: ./4_users_add_index.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./5_create_friends_table.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./6_create_posts_table.xml
       relativeToChangelogFile: true
