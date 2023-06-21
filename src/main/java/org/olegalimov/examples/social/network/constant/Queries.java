@@ -21,6 +21,10 @@ public class Queries {
                 INSERT INTO posts(post_id, text, author_user_id)
                 VALUES (:postId, :text, :authorUserId);
                 """;
+        public static final String INSERT_MESSAGE_TEMPLATE = """
+                INSERT INTO messages(from_user_id, to_user_id, text)
+                VALUES(:fromUserId, :toUserId, :text);
+                """;
     }
 
     public static class Select {
@@ -39,6 +43,12 @@ public class Queries {
                 WHERE author_user_id IN (
                     SELECT friend_user_id from friends WHERE user_id = :userId)
                 ORDER BY post_date_time DESC OFFSET :offset LIMIT :limit;
+                """;
+        public static final String SELECT_DIALOG_MESSAGES = """
+                SELECT * FROM messages
+                WHERE (from_user_id = :fromUserId OR from_user_id = :toUserId)
+                    AND (to_user_id = :toUserId OR to_user_id = :fromUserId)
+                ORDER BY message_date_time DESC;
                 """;
     }
 

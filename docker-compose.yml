@@ -1,41 +1,71 @@
-version: "3.9"
+version: "3"
 
-networks:
-  pg-net:
-    name: pgnet
-    ipam:
-      config:
-        - subnet: "192.168.0.0/24"
 services:
-  pg-master:
-    container_name: pgmaster
-    networks:
-      - pg-net
-    image: postgres:alpine3.17
-    ports:
-      - "5432:5432"
-    restart: unless-stopped
-    environment:
-      POSTGRES_PASSWORD: test_pass
+  #citus
+  #do not change service names because citus manager can't work with it
+  master:
+    container_name: citus_master
+    image: "citusdata/citus:11.3.0"
+    ports: ["${COORDINATOR_EXTERNAL_PORT:-5432}:5432"]
+    labels: ["com.citusdata.role=Master"]
+    environment: &AUTH
       POSTGRES_USER: test_user
-    command: [ "postgres", "-c", "log_statement=all" ]
+      POSTGRES_PASSWORD: test_user
+      PGUSER: postgres
+      PGPASSWORD: pass
+      POSTGRES_HOST_AUTH_METHOD: "${POSTGRES_HOST_AUTH_METHOD:-trust}"
+  manager:
+    container_name: citus_manager
+    image: "citusdata/membership-manager:0.3.0"
+    volumes:
+      - "${DOCKER_SOCK:-/var/run/docker.sock}:/var/run/docker.sock"
+      - healthcheck-volume:/healthcheck
+    depends_on: [master]
+    environment: *AUTH
+  worker:
+    container_name: citus_worker
+    image: "citusdata/citus:11.3.0"
+    labels: [ "com.citusdata.role=Worker" ]
+    depends_on: [ manager ]
+    environment: *AUTH
+    command: "/wait-for-manager.sh"
+    volumes:
+      - healthcheck-volume:/healthcheck
+  worker-2:
+    container_name: citus_worker_2
+    image: "citusdata/citus:11.3.0"
+    labels: [ "com.citusdata.role=Worker" ]
+    depends_on: [ manager ]
+    environment: *AUTH
+    command: "/wait-for-manager.sh"
+    volumes:
+      - healthcheck-volume:/healthcheck
+  worker-3:
+    profiles:
+      - manual_only
+    container_name: citus_worker_3
+    image: "citusdata/citus:11.3.0"
+    labels: [ "com.citusdata.role=Worker" ]
+    depends_on: [ manager ]
+    environment: *AUTH
+    command: "/wait-for-manager.sh"
+    volumes:
+      - healthcheck-volume:/healthcheck
   redis-master:
-    container_name: redismaster
-    networks:
-      - pg-net
+    container_name: redis_master
     image: redis:alpine3.18
     ports:
       - "6379:6379"
-  social-network:
-    networks:
-      - pg-net
+  social-network-app:
     depends_on:
-      - pg-master
+      - master
       - redis-master
     image: social-network:0.1.0
     ports:
       - "8080:8080"
     restart: unless-stopped
     environment:
-      - DATABASE_HOST=pgmaster
-      - REDIS_HOST=redismaster
+      - DATABASE_HOST=master
+      - REDIS_HOST=redis-master
+volumes:
+  healthcheck-volume:

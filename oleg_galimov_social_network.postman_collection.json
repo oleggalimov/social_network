@@ -390,6 +390,92 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "dialogs",
+			"item": [
+				{
+					"name": "send message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyYjdhNWRlYi03NDk0LTRiMmMtOGVkZS1hZDM4NDZkZDAxNTEiLCJpYXQiOjE2ODczNjg4ODAsImV4cCI6MTY4NzM3MjQ4MH0.RxHogW-4DSJvQJQOTH3nIml03E4ZmV1gHs2Mr37VcbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\" :\"Hello!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/dialog/2b7a5deb-7494-4b2c-8ede-ad3846dd0151/send?user_id=c1bc403c-7798-4c17-a002-76ccfd81de40",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dialog",
+								"2b7a5deb-7494-4b2c-8ede-ad3846dd0151",
+								"send"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "c1bc403c-7798-4c17-a002-76ccfd81de40"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get dialog messages",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkOTVkOTY0Yy0xNjhjLTRiZjQtOTc5Ny02NDExMjM3ZGNlODAiLCJpYXQiOjE2ODczNjk2MjQsImV4cCI6MTY4NzM3MzIyNH0.ktsmAwOCdQxDrVqiN0MIbhG2tZjdAA1M07q8PODeI78",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/dialog/d95d964c-168c-4bf4-9797-6411237dce80/list?user_id=2b7a5deb-7494-4b2c-8ede-ad3846dd0151",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"dialog",
+								"d95d964c-168c-4bf4-9797-6411237dce80",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "2b7a5deb-7494-4b2c-8ede-ad3846dd0151"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

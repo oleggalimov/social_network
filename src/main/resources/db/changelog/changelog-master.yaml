@@ -20,3 +20,6 @@ databaseChangeLog:
   - include:
       file: ./7_populate_posts_table.xml
       relativeToChangelogFile: true
+  - include:
+      file: ./8_create_messages_table.xml
+      relativeToChangelogFile: true
