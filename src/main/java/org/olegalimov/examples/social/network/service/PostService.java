@@ -6,6 +6,7 @@ import org.olegalimov.examples.social.network.dao.PostsRepository;
 import org.olegalimov.examples.social.network.dto.PostDto;
 import org.olegalimov.examples.social.network.entity.Post;
 import org.olegalimov.examples.social.network.mapper.PostMapper;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.olegalimov.examples.social.network.constant.CommonConstant.POSTS_CACHE_NAME;
+import static org.olegalimov.examples.social.network.constant.CommonConstant.WebSocket.WS_EXCHANGE_POST_PREFIX;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class PostService {
     private final PostsRepository postsRepository;
     private final PostMapper postMapper;
     private final CacheService<PostDto> cacheService;
+    private final SimpMessagingTemplate messagingTemplate;
 
     public String createPost(String userId, String text) {
         if (!StringUtils.hasText(text)) {
@@ -39,6 +42,12 @@ public class PostService {
         if (!isPostCreated) {
             log.error("Не удалось сохранить пост");
             throw new IllegalStateException("Не удалось сохранить пост от пользователя " + userId);
+        }
+        if (postId != null) {
+            var postDto = postMapper.toPostDto(postId, text, userId);
+            var destination = WS_EXCHANGE_POST_PREFIX + userId;
+            log.info("Рассылаем сообщение в канал подписчикам {}", destination);
+            messagingTemplate.convertAndSend(destination, postDto);
         }
         return postId;
     }
@@ -87,9 +96,9 @@ public class PostService {
     public Collection<PostDto> getFeedForUser(String userId, int offset, int limit) {
         log.info("Ищем {} постов (начиная с {}) для пользователя с идентификатором {}", limit, offset, userId);
         var cachedPosts = cacheService.getAllFromCache(POSTS_CACHE_NAME);
-        if(CollectionUtils.isEmpty(cachedPosts)) {
-                log.info("В кеше нет данных, запрашиваем данные в БД");
-                var postList = selectPosts(userId, offset, limit).stream()
+        if (CollectionUtils.isEmpty(cachedPosts)) {
+            log.info("В кеше нет данных, запрашиваем данные в БД");
+            var postList = selectPosts(userId, offset, limit).stream()
                     .sorted(Comparator.comparing(Post::getPostCreatedAt))
                     .map(postMapper::toPostDto)
                     .toList();

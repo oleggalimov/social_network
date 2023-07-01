@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.olegalimov.examples.social.network.dto.LoginRequestDto;
 import org.olegalimov.examples.social.network.dto.LoginResponseDto;
 import org.olegalimov.examples.social.network.utils.JwtUtils;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +19,7 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
+    @PostMapping(value = "/login", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public LoginResponseDto authenticateUser(@RequestBody LoginRequestDto loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(

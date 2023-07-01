@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5ee840e9-8fdb-4263-94a0-07f493be5c16",
+		"_postman_id": "3a1f0a2f-5e53-4f94-b097-ad7a1a36997b",
 		"name": "oleg_galimov_social_network",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28168881"
 	},
 	"item": [
 		{
@@ -43,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\" : \"7e4f6862-c407-4336-a7a4-8b6017ca1d02\",\n    \"password\" : \"password123\"\n}",
+							"raw": "{\n    \"id\" : \"9556a01c-ab60-4e63-b985-c728bbe31e02\",\n    \"password\" : \"password123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -192,7 +193,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwZDUxM2M0Yi01N2U4LTQ3YjItYmFhYy0yNGI3YjNmYmUzZTciLCJpYXQiOjE2ODcwMjg3OTYsImV4cCI6MTY4NzAzMjM5Nn0.5y6EQ_Z4SEjX-bmGCW0JVWAjJKXbfZeVaAwwdNM7Aio",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5NTU2YTAxYy1hYjYwLTRlNjMtYjk4NS1jNzI4YmJlMzFlMDIiLCJpYXQiOjE2ODgyMjQ1MTgsImV4cCI6MTY4ODIyODExOH0.mXOQXS6ioLKOmQfp8EwsKdXwEj-hhqRDYTCJUmuwiCM",
 									"type": "string"
 								}
 							]

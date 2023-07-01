@@ -17,6 +17,8 @@ spring:
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
 #logging:
 #  level:
 #    org.springframework.jdbc.core: TRACE

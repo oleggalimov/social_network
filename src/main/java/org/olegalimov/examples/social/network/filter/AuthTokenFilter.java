@@ -17,9 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static org.olegalimov.examples.social.network.constant.CommonConstant.WebSocket.WS_ENDPOINT;
+
 @Component
 @AllArgsConstructor
 public class AuthTokenFilter extends OncePerRequestFilter {
+
+    private static final String WS_TOKEN_KEY = "access_token";
+    private static final String HTTP_TOKEN_KEY = "Authorization";
+    private static final String HTTP_TOKEN_PREFIX = "Bearer ";
 
     private final UserDetailsService userDetailsService;
 
@@ -51,10 +57,16 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     }
 
     private String parseJwt(HttpServletRequest request) {
-        String headerAuth = request.getHeader("Authorization");
+        var isWsRequest = request.getRequestURI().startsWith(WS_ENDPOINT);
 
-        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-            return headerAuth.substring(7);
+        String headerAuth = isWsRequest ? request.getParameter(WS_TOKEN_KEY) : request.getHeader(HTTP_TOKEN_KEY);
+
+        if (StringUtils.hasText(headerAuth)) {
+            if (isWsRequest) {
+                return headerAuth;
+            } else if (headerAuth.startsWith(HTTP_TOKEN_PREFIX)) {
+                return headerAuth.substring(7);
+            }
         }
 
         return null;

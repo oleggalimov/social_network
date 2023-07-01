@@ -32,6 +32,8 @@ services:
     volumes:
       - healthcheck-volume:/healthcheck
   worker-2:
+    profiles:
+      - manual_only
     container_name: citus_worker_2
     image: "citusdata/citus:11.3.0"
     labels: [ "com.citusdata.role=Worker" ]
@@ -40,17 +42,15 @@ services:
     command: "/wait-for-manager.sh"
     volumes:
       - healthcheck-volume:/healthcheck
-  worker-3:
-    profiles:
-      - manual_only
-    container_name: citus_worker_3
-    image: "citusdata/citus:11.3.0"
-    labels: [ "com.citusdata.role=Worker" ]
-    depends_on: [ manager ]
-    environment: *AUTH
-    command: "/wait-for-manager.sh"
-    volumes:
-      - healthcheck-volume:/healthcheck
+  rabbitmq:
+    #после старта нужно включить STOMP-плагин и создать exchange (см. Readme).
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 61613:61613
+
   redis-master:
     container_name: redis_master
     image: redis:alpine3.18
@@ -58,6 +58,7 @@ services:
       - "6379:6379"
   social-network-app:
     depends_on:
+      - rabbitmq
       - master
       - redis-master
     image: social-network:0.1.0
@@ -67,5 +68,6 @@ services:
     environment:
       - DATABASE_HOST=master
       - REDIS_HOST=redis-master
+      - RABBIT_MQ_HOST=rabbitmq
 volumes:
   healthcheck-volume:

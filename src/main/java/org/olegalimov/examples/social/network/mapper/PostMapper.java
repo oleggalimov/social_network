@@ -11,4 +11,6 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 public abstract class PostMapper {
     public abstract PostDto toPostDto(Post postEntity);
 
+    public abstract PostDto toPostDto(String id, String text, String authorUserId);
+
 }

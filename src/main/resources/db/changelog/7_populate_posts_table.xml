@@ -11,7 +11,14 @@
         </preConditions>
         <sql>
             INSERT INTO USERS(user_id, password, second_name, first_name, age, city)
-            VALUES ('9556a01c-ab60-4e63-b985-c728bbe31e02', gen_random_uuid(), 'Леди', 'Гага', 32, 'Воткинск');
+            VALUES ('9556a01c-ab60-4e63-b985-c728bbe31e02',
+            '$2a$10$enkumyeGPBJ4/UBqXuuJtO/E3ZNLvKpeTNE8ySAr.5RleeTfB2p02', 'Леди', 'Гага', 32, 'Воткинск');
+        </sql>
+
+        <sql>
+            INSERT INTO USERS(user_id, password, second_name, first_name, age, city)
+            VALUES ('223decb4-fe46-4134-a6d5-f7476386f286',
+            '$2a$10$enkumyeGPBJ4/UBqXuuJtO/E3ZNLvKpeTNE8ySAr.5RleeTfB2p02', 'Пол', 'Аттрейдес', 15, 'Каладан');
         </sql>
         <sql>
             INSERT INTO posts (post_id, text,author_user_id,post_date_time)

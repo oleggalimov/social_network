@@ -20,7 +20,7 @@ public class PostController {
 
     @PostMapping("/create")
     public String createPost(@RequestBody CreatePostRequest request) {
-        return postService.createPost(getUserFromContext(), request.text());
+        return  postService.createPost(getUserFromContext(), request.text());
     }
 
     @GetMapping("/get/feed")
