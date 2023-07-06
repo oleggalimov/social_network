@@ -14,6 +14,7 @@ services:
       PGUSER: postgres
       PGPASSWORD: pass
       POSTGRES_HOST_AUTH_METHOD: "${POSTGRES_HOST_AUTH_METHOD:-trust}"
+    command: ["postgres", "-c", "log_statement=all"]
   manager:
     container_name: citus_manager
     image: "citusdata/membership-manager:0.3.0"
@@ -56,11 +57,22 @@ services:
     image: redis:alpine3.18
     ports:
       - "6379:6379"
+  tarantool:
+    container_name: tarantool
+    image: tarantool/tarantool:2.11.0-ubuntu20.04
+    ports:
+      - "3301:3301"
+    environment:
+      - TARANTOOL_USER_NAME=test_user
+      - TARANTOOL_USER_PASSWORD=test_password
   social-network-app:
+    profiles:
+      - manual-only
     depends_on:
       - rabbitmq
       - master
       - redis-master
+      - tarantool
     image: social-network:0.1.0
     ports:
       - "8080:8080"
