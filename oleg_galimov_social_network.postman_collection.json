@@ -144,6 +144,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "find user by first and last names from tarantool",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5M2M5YjhmNi02ZTQ0LTQ4YTEtOTYwYS00NGNiNGI5MDAyMzkiLCJpYXQiOjE2OTAxMzQ2MDAsImV4cCI6MTY5MDEzODIwMH0.ZaiTGQntq8Bz8WmkFVkFMcepDsLB0fObmk1j2FzIUbY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/user/tarantool/search?first_name=Ярослав&last_name=Агеев",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"tarantool",
+								"search"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": "Ярослав"
+								},
+								{
+									"key": "last_name",
+									"value": "Агеев"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

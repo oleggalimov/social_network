@@ -6,6 +6,7 @@ import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 import org.olegalimov.examples.social.network.dto.UserDto;
 import org.olegalimov.examples.social.network.entity.User;
+import org.olegalimov.examples.social.network.entity.tarantool.TarantoolUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -22,6 +23,10 @@ public abstract class UserMapper {
     @Mapping(target = "password", ignore = true)
     @Mapping(target = "id", source = "userId")
     public abstract UserDto toUserDto(User userEntity);
+
+    @Mapping(target = "password", ignore = true)
+    @Mapping(target = "id", source = "userId")
+    public abstract UserDto toUserDto(TarantoolUser userEntity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "userId", expression = "java( generateUUid() )")

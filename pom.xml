@@ -91,6 +91,12 @@
             <version>3.20.0</version>
         </dependency>
 
+        <!--        tarantool-->
+        <dependency>
+            <groupId>io.tarantool</groupId>
+            <artifactId>spring-data-tarantool</artifactId>
+            <version>0.6.0</version>
+        </dependency>
         <!--        websocket-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

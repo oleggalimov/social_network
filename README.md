@@ -1,4 +1,5 @@
 # Сборка и запуск приложения
+## Старт приложения
 В корне проекта выполняем последовательно:
 ```sh
 mvn clean install
@@ -11,6 +12,8 @@ docker build -t social-network:0.1.0 .
 docker compose up -d
 ```
 
+## Настройка web-socket через MQ
+
 В контейнере Rabbit mq включить плагин для обработки STOMP и создать целевой exchange:
 ```shell
 rabbitmq-plugins enable rabbitmq_stomp
@@ -18,6 +21,22 @@ rabbitmq-plugins enable rabbitmq_stomp
 ```shell
 rabbitmqadmin declare exchange name=post type=topic
 ```
+
+## Настройка Tarantool
+Скопируйте содежимое каталога `perfomance-test-tarantool` в каталог вольюма образа - `$PWD/volumes/tarantool/`
+
+С помощью [Cartridge CLI](https://www.tarantool.io/ru/doc/latest/book/cartridge/cartridge_cli/installation/)
+подключитесь к запущенному контейнеру и запустите скрипт инициализации пространства:
+
+```shell
+cartridge connect localhost:3301 -u test_user -p test_password
+```
+
+```shell
+dofile('/opt/tarantool/users.lua');
+```
+
+## Примечание
 
 В корне проекта лежит [коллекция для Postman](oleg_galimov_social_network.postman_collection.json),
 ее можно искользовать для тестирования API.

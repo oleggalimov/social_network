@@ -1,0 +1,26 @@
+2023-07-25 19:47:06,138 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2023-07-25 19:47:06,152 INFO o.a.j.JMeter: Loading user properties from: /Users/oleggalimov/.sdkman/candidates/jmeter/5.5/bin/user.properties
+2023-07-25 19:47:06,152 INFO o.a.j.JMeter: Loading system properties from: /Users/oleggalimov/.sdkman/candidates/jmeter/5.5/bin/system.properties
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: Copyright (c) 1998-2022 The Apache Software Foundation
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: Version 5.5
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: java.version=19.0.2
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: os.name=Mac OS X
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: os.arch=aarch64
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: os.version=13.4
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: file.encoding=UTF-8
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: java.awt.headless=null
+2023-07-25 19:47:06,155 INFO o.a.j.JMeter: Max memory     =1073741824
+2023-07-25 19:47:06,156 INFO o.a.j.JMeter: Available Processors =8
+2023-07-25 19:47:06,161 INFO o.a.j.JMeter: Default Locale=English (EN)
+2023-07-25 19:47:06,161 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2023-07-25 19:47:06,161 INFO o.a.j.JMeter: JMeterHome=/Users/oleggalimov/.sdkman/candidates/jmeter/5.5
+2023-07-25 19:47:06,161 INFO o.a.j.JMeter: user.dir  =/Users/oleggalimov/Desktop/project/social-network/perfomance-test-tarantool
+2023-07-25 19:47:06,161 INFO o.a.j.JMeter: PWD       =/Users/oleggalimov/Desktop/project/social-network/perfomance-test-tarantool
+2023-07-25 19:47:06,163 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: MacBook-Air-oleg.local FullName: localhost
+2023-07-25 19:47:06,170 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2023-07-25 19:47:06,600 INFO o.a.j.JMeterGuiLauncher: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.DarculaTheme
+2023-07-25 19:47:08,144 WARN o.j.r.PluginManager: Found JAR conflict: /Users/oleggalimov/.sdkman/candidates/jmeter/5.5/lib/ext/jmeter-plugins-manager-1.9.jar and /Users/oleggalimov/.sdkman/candidates/jmeter/5.5/lib/ext/jmeter-plugins-manager-1.8.jar
+2023-07-25 19:47:08,174 INFO o.j.r.JARSourceHTTP: Found cached repo
+2023-07-25 19:47:08,246 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.8, bzm-random-csv=0.8, jmeter-core=5.5, jmeter-ftp=5.5, jmeter-http=5.5, jmeter-jdbc=5.5, jmeter-jms=5.5, jmeter-junit=5.5, jmeter-java=5.5, jmeter-ldap=5.5, jmeter-mail=5.5, jmeter-mongodb=5.5, jmeter-native=5.5, jmeter-tcp=5.5, jmeter-components=5.5]
+2023-07-25 19:47:08,246 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager]

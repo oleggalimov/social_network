@@ -3,6 +3,7 @@ package org.olegalimov.examples.social.network.rest;
 import lombok.RequiredArgsConstructor;
 import org.olegalimov.examples.social.network.dto.CreateUserResponseDto;
 import org.olegalimov.examples.social.network.dto.UserDto;
+import org.olegalimov.examples.social.network.service.TarantoolUserService;
 import org.olegalimov.examples.social.network.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final TarantoolUserService tarantoolUserService;
 
     @PostMapping("/register")
     public CreateUserResponseDto registerUser(@RequestBody UserDto userDto) {
@@ -30,5 +32,12 @@ public class UserController {
             @RequestParam(name = "first_name") String firstName,
             @RequestParam(name = "last_name") String secondName) {
         return userService.findByNames(firstName, secondName);
+    }
+
+    @GetMapping("/tarantool/search")
+    public List<UserDto> searchUserInTarantool(
+            @RequestParam(name = "first_name") String firstName,
+            @RequestParam(name = "last_name") String lastName) {
+        return tarantoolUserService.findByNames(firstName, lastName);
     }
 }

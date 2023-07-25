@@ -44,6 +44,8 @@ services:
     volumes:
       - healthcheck-volume:/healthcheck
   rabbitmq:
+    profiles:
+      - manual-only
     #после старта нужно включить STOMP-плагин и создать exchange (см. Readme).
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
@@ -65,11 +67,13 @@ services:
     environment:
       - TARANTOOL_USER_NAME=test_user
       - TARANTOOL_USER_PASSWORD=test_password
+    volumes:
+      - $PWD/volumes/tarantool/:/opt/tarantool
   social-network-app:
-    profiles:
-      - manual-only
+#    profiles:
+#      - manual-only
     depends_on:
-      - rabbitmq
+#      - rabbitmq
       - master
       - redis-master
       - tarantool
@@ -80,6 +84,10 @@ services:
     environment:
       - DATABASE_HOST=master
       - REDIS_HOST=redis-master
-      - RABBIT_MQ_HOST=rabbitmq
+#      - RABBIT_MQ_HOST=rabbitmq
+      - TARANTOOL_HOST=tarantool
+      - TARANTOOL_PORT=3301
+      - TARANTOOL_USER_NAME=test_user
+      - TARANTOOL_USER_PASSWORD=test_password
 volumes:
   healthcheck-volume:

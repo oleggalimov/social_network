@@ -18,7 +18,13 @@ spring:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
   rabbitmq:
-    host: ${RABBIT_MQ_HOST:localhost}
+    host: ${RABBIT_MQ_HOST:}
+#Tarantool Config
+tarantool:
+   host: ${TARANTOOL_HOST:localhost}
+   port: ${TARANTOOL_PORT:3301}
+   username: ${TARANTOOL_USER_NAME:test_user}
+   password: ${TARANTOOL_USER_PASSWORD:test_password}
 #logging:
 #  level:
 #    org.springframework.jdbc.core: TRACE
