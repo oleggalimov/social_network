@@ -94,8 +94,8 @@
         <!--        tarantool-->
         <dependency>
             <groupId>io.tarantool</groupId>
-            <artifactId>spring-data-tarantool</artifactId>
-            <version>0.6.0</version>
+            <artifactId>cartridge-driver</artifactId>
+            <version>0.12.0</version>
         </dependency>
         <!--        websocket-->
         <dependency>

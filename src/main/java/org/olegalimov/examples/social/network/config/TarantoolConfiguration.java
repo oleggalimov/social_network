@@ -1,15 +1,13 @@
 package org.olegalimov.examples.social.network.config;
 
-import io.tarantool.driver.api.TarantoolClientConfig;
-import io.tarantool.driver.api.TarantoolServerAddress;
-import io.tarantool.driver.auth.SimpleTarantoolCredentials;
-import io.tarantool.driver.auth.TarantoolCredentials;
+import io.tarantool.driver.api.*;
+import io.tarantool.driver.api.tuple.TarantoolTuple;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.tarantool.config.AbstractTarantoolDataConfiguration;
 
 @Configuration
-public class TarantoolConfiguration extends AbstractTarantoolDataConfiguration {
+public class TarantoolConfiguration {
 
     @Value("${tarantool.host}")
     protected String host;
@@ -23,18 +21,15 @@ public class TarantoolConfiguration extends AbstractTarantoolDataConfiguration {
     @Value("${tarantool.password}")
     protected String password;
 
-    @Override
-    protected void configureClientConfig(TarantoolClientConfig.Builder builder) {
-        builder.withConnectTimeout(1000 * 5).withReadTimeout(1000 * 5).withRequestTimeout(1000 * 5);
-    }
-
-    @Override
-    public TarantoolCredentials tarantoolCredentials() {
-        return new SimpleTarantoolCredentials(username, password);
-    }
-
-    @Override
-    protected TarantoolServerAddress tarantoolServerAddress() {
-        return new TarantoolServerAddress(host, port);
+    @Bean
+    public TarantoolClient<TarantoolTuple, TarantoolResult<TarantoolTuple>> tarantoolClient() {
+        return TarantoolClientFactory.createClient()
+                .withAddress(host, port)
+                .withCredentials(username, password)
+                // Specify using the default CRUD proxy operations mapping configuration
+                .withProxyMethodMapping()
+                // You may also specify more client settings, such as:
+                // timeouts, number of connections, custom MessagePack entities to Java objects mapping, etc.
+                .build();
     }
 }
