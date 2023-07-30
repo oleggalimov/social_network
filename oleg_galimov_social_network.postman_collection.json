@@ -488,7 +488,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkOTVkOTY0Yy0xNjhjLTRiZjQtOTc5Ny02NDExMjM3ZGNlODAiLCJpYXQiOjE2ODczNjk2MjQsImV4cCI6MTY4NzM3MzIyNH0.ktsmAwOCdQxDrVqiN0MIbhG2tZjdAA1M07q8PODeI78",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5NTU2YTAxYy1hYjYwLTRlNjMtYjk4NS1jNzI4YmJlMzFlMDIiLCJpYXQiOjE2OTA3MzY1MDYsImV4cCI6MTY5MDc0MDEwNn0.iSHVF8K8DSNRQ4HbtD8cTcNDHCySriIB7VMF_0rVq7Q",
 									"type": "string"
 								}
 							]
@@ -496,20 +496,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/dialog/d95d964c-168c-4bf4-9797-6411237dce80/list?user_id=2b7a5deb-7494-4b2c-8ede-ad3846dd0151",
+							"raw": "localhost:8080/dialog/9556a01c-ab60-4e63-b985-c728bbe31e02/list?user_id=223decb4-fe46-4134-a6d5-f7476386f286",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"dialog",
-								"d95d964c-168c-4bf4-9797-6411237dce80",
+								"9556a01c-ab60-4e63-b985-c728bbe31e02",
 								"list"
 							],
 							"query": [
 								{
 									"key": "user_id",
-									"value": "2b7a5deb-7494-4b2c-8ede-ad3846dd0151"
+									"value": "223decb4-fe46-4134-a6d5-f7476386f286"
 								}
 							]
 						}

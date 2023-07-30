@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${spring.datasource.username}
+    username: test_user
+    password: test_pass
+  liquibase:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    defaultSchema: public
+    changeLog: classpath:/db/changelog/changelog-master.yaml
+  # Redis Config
+  cache:
+    type: redis
+  redis:
+    host: ${REDIS_HOST:}
+    port: ${REDIS_PORT:6379}
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:}
+#Tarantool Config
+tarantool:
+  host: ${TARANTOOL_HOST:localhost}
+  port: ${TARANTOOL_PORT:3301}
+  username: ${TARANTOOL_USER_NAME:test_user}
+  password: ${TARANTOOL_USER_PASSWORD:test_password}
+#logging:
+#  level:
+#    org.springframework.jdbc.core: TRACE
+grpc:
+
+  message-client:
+    host: ${GRPC_MESSAGE_CLIENT_HOST:localhost}
+    port: ${GRPC_MESSAGE_CLIENT_PORT:9090}
+    username: ${GRPC_MESSAGE_CLIENT_USER_NAME:ee4354d9-a352-4ece-bf9a-7266683e9469}
+    password: ${GRPC_MESSAGE_CLIENT_USER_PASSWORD:Password%123}

@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - include:
+      file: ./1_create_users_table.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./2_1_populate_users.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./3_users_add_index.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./4_create_friends_table.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./5_create_posts_table.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./6_populate_posts_table.xml
+      relativeToChangelogFile: true

@@ -6,11 +6,23 @@ mvn clean install
 ```
 
 ```sh
-docker build -t social-network:0.1.0 .
+docker build -t social-network-dialogs:0.1.0 ./social-network-dialogs
 ```
+
+```sh
+docker build -t social-network-monolith:0.1.0 ./social-network-monolith
+```
+
+Запуск в режиме full (включая кеши, тарантул и т.д.)
 ```shell
-docker compose up -d
+docker compose --profile full up -d
 ```
+
+Запуск в режиме standalone (Только база данных, все остальное не работает)
+```shell
+docker compose --profile standalone up -d
+```
+
 
 ## Настройка web-socket через MQ
 
@@ -38,7 +50,7 @@ dofile('/opt/tarantool/users.lua');
 
 ## Примечание
 
-В корне проекта лежит [коллекция для Postman](oleg_galimov_social_network.postman_collection.json),
+В корне проекта лежит [коллекция для Postman](social-network-monolith/oleg_galimov_social_network.postman_collection.json),
 ее можно искользовать для тестирования API.
 Примерная последовательность шагов:
 - создать пользователя;

@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package org.olegalimov.examples.social.network.dialogs.grpc;
+import "google/protobuf/timestamp.proto";
+
+message Message {
+  int64 id = 1;
+  string from_user_id = 2;
+  string to_user_id = 3;
+  string text = 4;
+  google.protobuf.Timestamp timestamp = 5;
+}
+
+message SaveMessageResponse {
+  bool success = 1;
+}
+
+message FindAllMessagesResponse {
+  repeated Message items = 1;
+}
+
+service MessageService {
+  rpc saveMessage(Message) returns (SaveMessageResponse) {};
+  rpc findAllMessages(Message) returns (FindAllMessagesResponse) {};
+}

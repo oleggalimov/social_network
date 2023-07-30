@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: ./0_create_table_users.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./1_add_app_user.xml
+      relativeToChangelogFile: true
+  - include:
+      file: ./2_create_messages_table.xml
+      relativeToChangelogFile: true

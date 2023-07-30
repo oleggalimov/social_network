@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="4_1_create_table_friends" author="oleg.galimov">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="friends"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="friend_id_seq"/>
+
+        <createTable tableName="friends">
+            <column name="user_id" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="friend_user_id" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4_2_add_fk_constraint_on_table_friends" author="oleg.galimov">
+        <preConditions onFail="MARK_RAN">
+
+            <tableExists tableName="friends"/>
+        </preConditions>
+        <addForeignKeyConstraint baseTableName="friends" baseColumnNames="user_id"
+                                 constraintName="fk_user_id"
+                                 referencedTableName="users" referencedColumnNames="user_id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="friends" baseColumnNames="friend_user_id"
+                                 constraintName="fk_friend_user_id"
+                                 referencedTableName="users" referencedColumnNames="user_id"
+                                 onDelete="CASCADE"/>
+        <addUniqueConstraint tableName="friends" constraintName="friends_uk1" columnNames="user_id, friend_user_id"/>
+    </changeSet>
+
+</databaseChangeLog>

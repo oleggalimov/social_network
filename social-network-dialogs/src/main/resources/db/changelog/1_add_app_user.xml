@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="0_1_add_app_user" author="oleg.galimov">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="users"/>
+        </preConditions>
+        <insert tableName="users">
+            <column name="user_id">ee4354d9-a352-4ece-bf9a-7266683e9469</column>
+            <column name="first_name">social-network-app</column>
+            <column name="second_name">social-network-app</column>
+            <column name="age">0</column>
+            <column name="password">$2a$10$IQrNtw/OeXsdNAUVBADvt.ANyrlZl8Q2Hdk2CPV62/ifar5Pjzu7K</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

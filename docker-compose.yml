@@ -1,9 +1,14 @@
 version: "3"
 
+
 services:
+
+  ####fulL-configuration
   #citus
   #do not change service names because citus manager can't work with it
   master:
+    profiles:
+      - full
     container_name: citus_master
     image: "citusdata/citus:11.3.0"
     ports: ["${COORDINATOR_EXTERNAL_PORT:-5432}:5432"]
@@ -16,6 +21,8 @@ services:
       POSTGRES_HOST_AUTH_METHOD: "${POSTGRES_HOST_AUTH_METHOD:-trust}"
     command: ["postgres", "-c", "log_statement=all"]
   manager:
+    profiles:
+      - full
     container_name: citus_manager
     image: "citusdata/membership-manager:0.3.0"
     volumes:
@@ -24,6 +31,8 @@ services:
     depends_on: [master]
     environment: *AUTH
   worker:
+    profiles:
+      - full
     container_name: citus_worker
     image: "citusdata/citus:11.3.0"
     labels: [ "com.citusdata.role=Worker" ]
@@ -34,7 +43,7 @@ services:
       - healthcheck-volume:/healthcheck
   worker-2:
     profiles:
-      - manual_only
+      - full
     container_name: citus_worker_2
     image: "citusdata/citus:11.3.0"
     labels: [ "com.citusdata.role=Worker" ]
@@ -45,7 +54,7 @@ services:
       - healthcheck-volume:/healthcheck
   rabbitmq:
     profiles:
-      - manual-only
+      - full
     #после старта нужно включить STOMP-плагин и создать exchange (см. Readme).
     image: rabbitmq:3-management-alpine
     container_name: 'rabbitmq'
@@ -55,11 +64,15 @@ services:
       - 61613:61613
 
   redis-master:
+    profiles:
+      - full
     container_name: redis_master
     image: redis:alpine3.18
     ports:
       - "6379:6379"
   tarantool:
+    profiles:
+      - full
     container_name: tarantool
     image: tarantool/tarantool:2.11.0-ubuntu20.04
     ports:
@@ -69,11 +82,23 @@ services:
       - TARANTOOL_USER_PASSWORD=test_password
     volumes:
       - $PWD/volumes/tarantool/:/opt/tarantool
-  social-network-app:
-#    profiles:
-#      - manual-only
+  social-network-dialogs:
+    profiles:
+      - full
     depends_on:
-#      - rabbitmq
+      - master
+    image: social-network-monolith:0.1.0
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=postgres
+  social-network-app:
+    profiles:
+      - full
+    depends_on:
+      - social-network-dialogs
+      - rabbitmq
       - master
       - redis-master
       - tarantool
@@ -84,10 +109,48 @@ services:
     environment:
       - DATABASE_HOST=master
       - REDIS_HOST=redis-master
-#      - RABBIT_MQ_HOST=rabbitmq
+      - RABBIT_MQ_HOST=rabbitmq
       - TARANTOOL_HOST=tarantool
       - TARANTOOL_PORT=3301
       - TARANTOOL_USER_NAME=test_user
       - TARANTOOL_USER_PASSWORD=test_password
+  #####standalone-configuration
+  postgres:
+    image: postgres:15.3-alpine3.18
+    profiles:
+      - standalone_no_app
+      - standalone
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: test_user
+      POSTGRES_PASSWORD: test_pass
+    restart: unless-stopped
+  social-network-dialogs-standalone:
+    profiles:
+      - standalone
+    depends_on:
+      - postgres
+    image: social-network-dialogs:0.1.0
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=postgres
+  social-network-monolith-standalone-app:
+    profiles:
+      - standalone
+    depends_on:
+      - social-network-dialogs-standalone
+      - postgres
+    image: social-network-monolith:0.1.0
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=postgres
+      - GRPC_MESSAGE_CLIENT_HOST=social-network-dialogs-standalone
 volumes:
   healthcheck-volume:
+
+
