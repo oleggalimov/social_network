@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${spring.datasource.username}
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${spring.datasource.username}
     username: test_user
     password: test_pass
   liquibase:

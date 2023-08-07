@@ -48,6 +48,11 @@
     <changeSet id="0_3_add_constraint_on_user_id" author="oleg.galimov">
         <preConditions onFail="MARK_RAN">
             <tableExists tableName="users"/>
+            <and>
+                <not>
+                    <uniqueConstraintExists tableName="users" constraintName="user_id_uk1"/>
+                </not>
+            </and>
         </preConditions>
         <addUniqueConstraint tableName="users" constraintName="user_id_uk1" columnNames="user_id"/>
     </changeSet>

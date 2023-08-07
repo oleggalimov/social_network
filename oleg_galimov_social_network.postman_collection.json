@@ -52,11 +52,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/login",
+							"raw": "localhost/login",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
 								"login"
 							]
@@ -510,6 +509,102 @@
 								{
 									"key": "user_id",
 									"value": "223decb4-fe46-4134-a6d5-f7476386f286"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "load balancing",
+			"item": [
+				{
+					"name": "register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Пол\",\n    \"second_name\": \"Атрейдес\",\n    \"age\": \"15\",\n    \"sex\": \"Мужчина\",\n    \"interests\": \"Фантасика\",\n    \"city\": \"Каладан\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/user/register",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : \"223decb4-fe46-4134-a6d5-f7476386f286\",\n    \"password\" : \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/login",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find user by first and last names Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMjNkZWNiNC1mZTQ2LTQxMzQtYTZkNS1mNzQ3NjM4NmYyODYiLCJpYXQiOjE2OTEzMzcxMDIsImV4cCI6MTY5MTM0MDcwMn0.a5q-b4unIoBet0pYT4EU-FCjF3QgOWK2AFdFUhm4X30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/user/search?first_name=%D0%A4%D1%91%D0%B4%D0%BE%D1%80&last_name=%D0%A4%D0%BE%D0%BC%D0%B8%D0%BD",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"user",
+								"search"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": "%D0%A4%D1%91%D0%B4%D0%BE%D1%80"
+								},
+								{
+									"key": "last_name",
+									"value": "%D0%A4%D0%BE%D0%BC%D0%B8%D0%BD"
 								}
 							]
 						}

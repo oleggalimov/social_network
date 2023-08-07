@@ -13,6 +13,11 @@ docker build -t social-network-dialogs:0.1.0 ./social-network-dialogs
 docker build -t social-network-monolith:0.1.0 ./social-network-monolith
 ```
 
+Остановка ранее запущенного compose
+```shell
+docker compose down
+```
+
 Запуск в режиме full (включая кеши, тарантул и т.д.)
 ```shell
 docker compose --profile full up -d

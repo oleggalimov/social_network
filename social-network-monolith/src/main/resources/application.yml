@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST:localhost}:5432/${spring.datasource.username}
+    url: jdbc:postgresql://${DATABASE_HOST:localhost}:${DATABASE_PORT:5432}/${spring.datasource.username}
     username: test_user
     password: test_pass
   liquibase:
@@ -29,9 +29,10 @@ tarantool:
 #  level:
 #    org.springframework.jdbc.core: TRACE
 grpc:
-
   message-client:
     host: ${GRPC_MESSAGE_CLIENT_HOST:localhost}
     port: ${GRPC_MESSAGE_CLIENT_PORT:9090}
     username: ${GRPC_MESSAGE_CLIENT_USER_NAME:ee4354d9-a352-4ece-bf9a-7266683e9469}
     password: ${GRPC_MESSAGE_CLIENT_USER_PASSWORD:Password%123}
+server:
+  port: ${APPLICATION_PORT:8080}
