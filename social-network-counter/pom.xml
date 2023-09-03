@@ -9,7 +9,7 @@
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>social-network-dialogs</artifactId>
+    <artifactId>social-network-counter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -25,11 +25,14 @@
             <version>${parent.version}</version>
         </dependency>
 
-        <!--        spring-->
+        <!--        cache-->
         <dependency>
-            <groupId>net.devh</groupId>
-            <artifactId>grpc-server-spring-boot-starter</artifactId>
-            <version>2.12.0.RELEASE</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
         </dependency>
 
         <!--        postgres-->
@@ -39,10 +42,16 @@
             <scope>runtime</scope>
         </dependency>
 
-<!--        kafka-->
+        <!--        kafka-->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <!--        web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
@@ -62,4 +71,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

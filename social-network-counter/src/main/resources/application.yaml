@@ -13,3 +13,7 @@ spring:
     changeLog: classpath:/db/changelog/changelog-master.yaml
   kafka:
     bootstrap-servers: ${KAFKA_SERVERS:localhost:29092}
+cache:
+  ttl: ${COUNTER_TTL_MINUTES:1}
+server:
+  port: ${SERVICE_PORT:8080}

@@ -6,6 +6,10 @@ mvn clean install
 ```
 
 ```sh
+docker build -t social-network-counter:0.1.0 ./social-network-counter
+```
+
+```sh
 docker build -t social-network-dialogs:0.1.0 ./social-network-dialogs
 ```
 

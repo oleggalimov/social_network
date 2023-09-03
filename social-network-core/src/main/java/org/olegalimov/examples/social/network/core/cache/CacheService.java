@@ -1,33 +1,41 @@
-package org.olegalimov.examples.social.network.service;
+package org.olegalimov.examples.social.network.core.cache;
 
 import lombok.extern.slf4j.Slf4j;
-import org.redisson.RedissonMapCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 
-@Service
 @Slf4j
-public class CacheService<T> {
+public abstract class CacheService<T> {
 
     @Autowired(required = false)
     private CacheManager cacheManager;
 
+    public abstract Collection<T> mapFromCache(Cache cache);
+
     public Collection<T> getAllFromCache(String cacheName) {
-        var cache = cacheManager == null ? null : cacheManager.getCache(cacheName);
+        Cache cache = getCache(cacheName);
         if (cache == null) {
             log.warn("Кеш {} не найден!", cacheName);
             return List.of();
         }
-        return ((RedissonMapCache<String, T>) cache.getNativeCache()).values();
+        return mapFromCache(cache);
+    }
+
+    public T getFromCache(String cacheName, Object key, Class<T> targetType) {
+        var cache = getCache(cacheName);
+        if (cache == null) {
+            return null;
+        }
+        return cache.get(key, targetType);
     }
 
     public void putToCache(String cacheName, List<T> objectList, Function<T, String> mapingFunction) {
-        var cache = cacheManager == null ? null : cacheManager.getCache(cacheName);
+        Cache cache = getCache(cacheName);
         if (cache == null) {
             log.error("Кеш {} не найден!", cacheName);
             return;
@@ -38,11 +46,15 @@ public class CacheService<T> {
     }
 
     public void invalidateCache(String cacheName) {
-        var cache = cacheManager == null ? null : cacheManager.getCache(cacheName);
+        Cache cache = getCache(cacheName);
         if (cache == null) {
             log.warn("Кеш {} не найден!", cacheName);
             return;
         }
         cache.invalidate();
+    }
+
+    private Cache getCache(String cacheName) {
+        return cacheManager == null ? null : cacheManager.getCache(cacheName);
     }
 }

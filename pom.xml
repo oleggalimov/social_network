@@ -17,6 +17,7 @@
         <module>social-network-dialogs</module>
         <module>social-network-monolith</module>
         <module>social-network-core</module>
+        <module>social-network-counter</module>
     </modules>
 
     <properties>

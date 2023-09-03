@@ -13,6 +13,7 @@ import java.util.Map;
 
 import static org.olegalimov.examples.social.network.core.constant.Queries.Insert.INSERT_MESSAGE_TEMPLATE;
 import static org.olegalimov.examples.social.network.core.constant.Queries.Select.SELECT_DIALOG_MESSAGES;
+import static org.olegalimov.examples.social.network.core.constant.Queries.Select.SELECT_UNREAD_MESSAGES;
 
 @Service
 @Slf4j
@@ -34,6 +35,14 @@ public class MessageRepository {
         return jdbcTemplate.query(
                 SELECT_DIALOG_MESSAGES,
                 Map.of("fromUserId", fromUserId, "toUserId", toUserId),
+                new RowMapperResultSetExtractor<>(messageRowMapper)
+        );
+    }
+
+    public List<MessageEntity> findAllMessages(String toUserId) {
+        return jdbcTemplate.query(
+                SELECT_UNREAD_MESSAGES,
+                Map.of("toUserId", toUserId),
                 new RowMapperResultSetExtractor<>(messageRowMapper)
         );
     }

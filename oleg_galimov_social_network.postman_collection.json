@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"Пол\",\n    \"second_name\": \"Атрейдес\",\n    \"age\": \"15\",\n    \"sex\": \"Мужчина\",\n    \"interests\": \"Фантасика\",\n    \"city\": \"Каладан\",\n    \"password\": \"password123\"\n}",
+							"raw": "{\n    \"first_name\": \"Лето\",\n    \"second_name\": \"Атрейдес\",\n    \"age\": \"42\",\n    \"sex\": \"Мужчина\",\n    \"interests\": \"Фантасика\",\n    \"city\": \"Каладан\",\n    \"password\": \"password123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,12 +24,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/user/register",
+							"raw": "localhost/monolith/user/register",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"user",
 								"register"
 							]
@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\" : \"9556a01c-ab60-4e63-b985-c728bbe31e02\",\n    \"password\" : \"password123\"\n}",
+							"raw": "{\n    \"id\" : \"98318238-1814-4f90-8f93-d3557fbc7a9c\",\n    \"password\" : \"password123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,11 +52,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/login",
+							"raw": "localhost/monolith/login",
 							"host": [
 								"localhost"
 							],
 							"path": [
+								"monolith",
 								"login"
 							]
 						}
@@ -79,12 +80,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/user/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
+							"raw": "localhost/monolith/user/get/b13698ab-1fd9-49af-8406-0bd30fe0412d",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"user",
 								"get",
 								"b13698ab-1fd9-49af-8406-0bd30fe0412d"
@@ -121,12 +122,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/user/search?first_name=Анна&last_name=Морозова",
+							"raw": "localhost/monolith/user/search?first_name=Анна&last_name=Морозова",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"user",
 								"search"
 							],
@@ -160,12 +161,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/user/tarantool/search?first_name=Ярослав&last_name=Агеев",
+							"raw": "localhost/monolith/user/tarantool/search?first_name=Ярослав&last_name=Агеев",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"user",
 								"tarantool",
 								"search"
@@ -205,12 +206,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/friend/set/8e7d90b1-9673-43b2-bfab-3438b4563f69",
+							"raw": "localhost/monolith/friend/set/8e7d90b1-9673-43b2-bfab-3438b4563f69",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"friend",
 								"set",
 								"8e7d90b1-9673-43b2-bfab-3438b4563f69"
@@ -249,12 +250,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/post/create",
+							"raw": "localhost/monolith/post/create",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"post",
 								"create"
 							]
@@ -287,12 +288,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/post/update",
+							"raw": "localhost/monolith/post/update",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"post",
 								"update"
 							]
@@ -316,12 +317,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/post/get/7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1",
+							"raw": "localhost/monolith/post/get/7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"post",
 								"get",
 								"7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1"
@@ -346,12 +347,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/post/get/feed?offset=0&limit=10",
+							"raw": "localhost/monolith/post/get/feed?offset=0&limit=10",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"post",
 								"get",
 								"feed"
@@ -386,12 +387,12 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/post/delete/7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1",
+							"raw": "localhost/monolith/post/delete/7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"post",
 								"delete",
 								"7226ee6c-4e21-42e4-b0e9-c7e3c0b32cd1"
@@ -416,12 +417,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/post/invalidate",
+							"raw": "localhost/monolith/post/invalidate",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"post",
 								"invalidate"
 							]
@@ -442,7 +443,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyYjdhNWRlYi03NDk0LTRiMmMtOGVkZS1hZDM4NDZkZDAxNTEiLCJpYXQiOjE2ODczNjg4ODAsImV4cCI6MTY4NzM3MjQ4MH0.RxHogW-4DSJvQJQOTH3nIml03E4ZmV1gHs2Mr37VcbU",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NWRlYTk5NS00M2UyLTQ3OWEtOGIwNS1hOTNjNzI1MjJlNjIiLCJpYXQiOjE2OTM3NTg3NjEsImV4cCI6MTY5Mzc2MjM2MX0.mFfYp--3PjtPkvsA4U1-UjhegdTbeiBqI3C1RIy70_A",
 									"type": "string"
 								}
 							]
@@ -451,7 +452,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"text\" :\"Hello!\"\n}",
+							"raw": "{\n    \"text\" :\"Как дела?\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -459,20 +460,20 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/dialog/2b7a5deb-7494-4b2c-8ede-ad3846dd0151/send?user_id=c1bc403c-7798-4c17-a002-76ccfd81de40",
+							"raw": "localhost/monolith/dialog/55dea995-43e2-479a-8b05-a93c72522e62/send?user_id=98318238-1814-4f90-8f93-d3557fbc7a9c",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"dialog",
-								"2b7a5deb-7494-4b2c-8ede-ad3846dd0151",
+								"55dea995-43e2-479a-8b05-a93c72522e62",
 								"send"
 							],
 							"query": [
 								{
 									"key": "user_id",
-									"value": "c1bc403c-7798-4c17-a002-76ccfd81de40"
+									"value": "98318238-1814-4f90-8f93-d3557fbc7a9c"
 								}
 							]
 						}
@@ -487,7 +488,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5NTU2YTAxYy1hYjYwLTRlNjMtYjk4NS1jNzI4YmJlMzFlMDIiLCJpYXQiOjE2OTA3MzY1MDYsImV4cCI6MTY5MDc0MDEwNn0.iSHVF8K8DSNRQ4HbtD8cTcNDHCySriIB7VMF_0rVq7Q",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ODMxODIzOC0xODE0LTRmOTAtOGY5My1kMzU1N2ZiYzdhOWMiLCJpYXQiOjE2OTM3NjAzMzcsImV4cCI6MTY5Mzc2MzkzN30.hR3jVpvJTYM8OZZDo-pdIoc5wv19I1IhVAPE1tMirOc",
 									"type": "string"
 								}
 							]
@@ -495,20 +496,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/dialog/9556a01c-ab60-4e63-b985-c728bbe31e02/list?user_id=223decb4-fe46-4134-a6d5-f7476386f286",
+							"raw": "localhost/monolith/dialog/98318238-1814-4f90-8f93-d3557fbc7a9c/list?user_id=55dea995-43e2-479a-8b05-a93c72522e62",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
 							"path": [
+								"monolith",
 								"dialog",
-								"9556a01c-ab60-4e63-b985-c728bbe31e02",
+								"98318238-1814-4f90-8f93-d3557fbc7a9c",
 								"list"
 							],
 							"query": [
 								{
 									"key": "user_id",
-									"value": "223decb4-fe46-4134-a6d5-f7476386f286"
+									"value": "55dea995-43e2-479a-8b05-a93c72522e62"
 								}
 							]
 						}
@@ -535,11 +536,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/user/register",
+							"raw": "localhost/monolith/user/register",
 							"host": [
 								"localhost"
 							],
 							"path": [
+								"monolith",
 								"user",
 								"register"
 							]
@@ -562,11 +564,12 @@
 							}
 						},
 						"url": {
-							"raw": "localhost/login",
+							"raw": "localhost/monolith/login",
 							"host": [
 								"localhost"
 							],
 							"path": [
+								"monolith",
 								"login"
 							]
 						}
@@ -574,7 +577,7 @@
 					"response": []
 				},
 				{
-					"name": "find user by first and last names Copy",
+					"name": "find user by first and last names",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -589,11 +592,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost/user/search?first_name=%D0%A4%D1%91%D0%B4%D0%BE%D1%80&last_name=%D0%A4%D0%BE%D0%BC%D0%B8%D0%BD",
+							"raw": "localhost/monolith/user/search?first_name=%D0%A4%D1%91%D0%B4%D0%BE%D1%80&last_name=%D0%A4%D0%BE%D0%BC%D0%B8%D0%BD",
 							"host": [
 								"localhost"
 							],
 							"path": [
+								"monolith",
 								"user",
 								"search"
 							],
@@ -606,6 +610,30 @@
 									"key": "last_name",
 									"value": "%D0%A4%D0%BE%D0%BC%D0%B8%D0%BD"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "counter",
+			"item": [
+				{
+					"name": "get unread message counter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/unread/98318238-1814-4f90-8f93-d3557fbc7a9c",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"unread",
+								"98318238-1814-4f90-8f93-d3557fbc7a9c"
 							]
 						}
 					},

@@ -2,6 +2,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 package org.olegalimov.examples.social.network.dialogs.grpc;
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 message Message {
   int64 id = 1;
@@ -22,4 +23,5 @@ message FindAllMessagesResponse {
 service MessageService {
   rpc saveMessage(Message) returns (SaveMessageResponse) {};
   rpc findAllMessages(Message) returns (FindAllMessagesResponse) {};
+  rpc findAllUnreadMessages(google.protobuf.StringValue) returns (FindAllMessagesResponse) {};
 }

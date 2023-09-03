@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: ./0_create_table_unread_messages_counter.xml
+      relativeToChangelogFile: true

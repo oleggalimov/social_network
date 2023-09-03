@@ -1,5 +1,6 @@
 package org.olegalimov.examples.social.network.service;
 
+import com.google.protobuf.StringValue;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.client.inject.GrpcClient;
@@ -41,6 +42,18 @@ public class MessageService {
         }
 
         return messageServiceBlockingStub.findAllMessages(messageMapper.toMessage(fromUserId, toUserId))
+                .getItemsList()
+                .stream()
+                .map(messageMapper::toMessageDto)
+                .toList();
+    }
+
+    public List<MessageDto> getMessages(String toUserId) {
+        if (!StringUtils.hasText(toUserId)) {
+            throw new IllegalArgumentException("Пользователь не указан!");
+        }
+
+        return messageServiceBlockingStub.findAllUnreadMessages(StringValue.of(toUserId))
                 .getItemsList()
                 .stream()
                 .map(messageMapper::toMessageDto)

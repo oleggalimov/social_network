@@ -25,6 +25,12 @@ public class Queries {
                 INSERT INTO messages(from_user_id, to_user_id, text)
                 VALUES(:fromUserId, :toUserId, :text);
                 """;
+        public static final String UPSERT_UNREAD_MESSAGES_COUNT = """
+                INSERT INTO unread_messages_counter (user_id, unread_counter)
+                VALUES(:userId, :newCount)
+                ON CONFLICT (user_id)
+                  DO UPDATE SET unread_counter=:newCount, last_update_time=now();
+                """;
     }
 
     public static class Select {
@@ -49,6 +55,15 @@ public class Queries {
                 WHERE (from_user_id = :fromUserId OR from_user_id = :toUserId)
                     AND (to_user_id = :toUserId OR to_user_id = :fromUserId)
                 ORDER BY message_date_time DESC;
+                """;
+        public static final String SELECT_UNREAD_MESSAGES = """
+                SELECT * FROM messages
+                WHERE to_user_id = :toUserId
+                ORDER BY message_date_time DESC;
+                """;
+        public static final String SELECT_UNREAD_MSG_COUNT = """
+                SELECT unread_counter FROM unread_messages_counter
+                WHERE user_id = :userId;
                 """;
     }
 

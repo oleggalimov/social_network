@@ -1,5 +1,6 @@
 package org.olegalimov.examples.social.network.dialogs.service;
 
+import com.google.protobuf.StringValue;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -26,6 +27,15 @@ public class MessageGrpcService extends MessageServiceGrpc.MessageServiceImplBas
     @Override
     public void findAllMessages(Message request, StreamObserver<FindAllMessagesResponse> responseObserver) {
         var result = messageService.getMessages(request.getFromUserId(), request.getToUserId());
+        responseObserver.onNext(FindAllMessagesResponse.newBuilder()
+                .addAllItems(result)
+                .build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void findAllUnreadMessages(StringValue toUserId, StreamObserver<FindAllMessagesResponse> responseObserver) {
+        var result = messageService.getMessages(toUserId.getValue());
         responseObserver.onNext(FindAllMessagesResponse.newBuilder()
                 .addAllItems(result)
                 .build());

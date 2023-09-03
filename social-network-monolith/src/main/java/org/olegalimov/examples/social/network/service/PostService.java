@@ -2,6 +2,7 @@ package org.olegalimov.examples.social.network.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.olegalimov.examples.social.network.core.cache.CacheService;
 import org.olegalimov.examples.social.network.dao.PostsRepository;
 import org.olegalimov.examples.social.network.dto.PostDto;
 import org.olegalimov.examples.social.network.entity.Post;
