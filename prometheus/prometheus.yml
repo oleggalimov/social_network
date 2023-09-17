@@ -1,0 +1,6 @@
+scrape_configs:
+  - job_name: 'social-network-monitoring'
+    scrape_interval: 5s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['social-network-monolith-standalone-app-1:8080']

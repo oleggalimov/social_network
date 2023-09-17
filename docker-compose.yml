@@ -172,11 +172,13 @@ services:
     image: social-network-monolith:0.1.0
     ports:
       - "8081:8080"
+      - "5001:5001"
     restart: unless-stopped
     environment:
       - DATABASE_HOST=haproxy
       - DATABASE_PORT=5434
       - GRPC_MESSAGE_CLIENT_HOST=social-network-dialogs-standalone
+      - JAVA_TOOL_OPTIONS=-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=5001 -Dcom.sun.management.jmxremote.rmi.port=5001 -Dcom.sun.management.jmxremote.host=0.0.0.0
   social-network-monolith-standalone-app-2:
     profiles:
       - standalone
@@ -246,5 +248,107 @@ services:
       - DATABASE_HOST=haproxy
       - DATABASE_PORT=5434
       - KAFKA_SERVERS=kafka:9092
+  prometheus:
+    profiles:
+      - standalone_no_app
+      - standalone
+    image: prom/prometheus:v2.36.2
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - "9092:9090"
+    restart: always
+  grafana:
+    profiles:
+      - standalone_no_app
+      - standalone
+    image: grafana/grafana
+    user: "472"
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    restart: always
+  zabbix-postgres:
+    image: postgres:15.3-alpine3.18
+    profiles:
+      - standalone_no_app
+      - standalone
+    ports:
+      - "5438:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    restart: unless-stopped
+  zabbix-server:
+    profiles:
+      - standalone_no_app
+      - standalone
+    depends_on:
+      - zabbix-postgres
+    image: zabbix/zabbix-server-pgsql:alpine-6.0-latest
+    environment:
+      - DB_SERVER_HOST=zabbix-postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - ZBX_LISTENPORT=10051
+      - ZBX_JAVAGATEWAY_ENABLE=true
+      - ZBX_STARTJAVAPOLLERS=5
+      - ZBX_DEBUGLEVEL=2
+    ports:
+      - "10051:10051"
+    volumes:
+      - $PWD/zabbix/:/etc/zabbix/
+
+  zabbix-ui:
+    image: zabbix/zabbix-web-nginx-pgsql:6.0-alpine-latest
+    profiles:
+      - standalone_no_app
+      - standalone
+    depends_on:
+      - zabbix-server
+    environment:
+      - DB_SERVER_HOST=zabbix-postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - ZBX_SERVER_HOST="zabbix-server"
+      - ZBX_DEBUGLEVEL=3
+    ports:
+      - "8086:8080"
+      - "443:443"
+    volumes:
+      - /etc/ssl/nginx:/etc/ssl/nginx:ro
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-6.4-latest
+    depends_on:
+      - zabbix-server
+    profiles:
+      - standalone_no_app
+      - standalone
+    ports:
+      - "10050:10050"
+    environment:
+      - ZBX_SERVER_HOST=zabbix-server
+
+  zabbix-java-gateway:
+    image: zabbix/zabbix-java-gateway:alpine-6.4-latest
+    depends_on:
+      - zabbix-server
+    profiles:
+      - standalone_no_app
+      - standalone
+    ports:
+      - "10052:10052"
 volumes:
   healthcheck-volume:
+  prometheus_data: { }
+  grafana_data: { }

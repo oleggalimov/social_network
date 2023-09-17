@@ -53,7 +53,7 @@ public class SecurityConfig {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/login/**", "/feed/**", "/web/**").permitAll()
+                .authorizeRequests().antMatchers("/login/**", "/feed/**", "/web/**", "/actuator/**").permitAll()
                 .and().authorizeRequests().antMatchers("/user/register/**").permitAll()
                 .anyRequest().authenticated();
 

@@ -640,6 +640,31 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "metrics",
+			"item": [
+				{
+					"name": "monolith metrics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/actuator/prometheus",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
